@@ -1,0 +1,104 @@
+<HTML>
+    <head>
+        
+    </head>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        button {
+            background-color: #8bbf9f; /* Green */
+            border: none;
+            color: whitesmoke;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            }
+            .inputfile {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+                }
+            #label{
+                padding: 1em;
+                color: whitesmoke;
+                background-color: #d6ba73;
+            }
+            #label:hover{
+                cursor: pointer;
+                border-style: solid;
+                border-color: white;
+            }
+            button:hover{
+                cursor: pointer;
+                border-style: solid;
+                border-color: white;
+            }
+            #container{
+                flex-direction: column;
+            }
+    </style>
+
+    <body>
+        <h1>Drumbit File Converter</h1>
+        <h2>Select your downloaded drum bit recording and click 'Fix File'</h2>
+        <div id='container'>
+            <input type="file" id="input" class='inputfile'>
+            <label for="input" id='label'>Choose a file</label>
+            <button id='fix'>Fix File</button>
+        </div>
+
+        <script>
+            let file;
+            const fileSelector = document.getElementById('input')
+            const button = document.getElementById('fix')
+            button.addEventListener('click', ()=>{
+                console.log('click')
+                if (file != null)
+                    convert(file)
+                else
+                alert('please select a file')
+            })
+            fileSelector.addEventListener('change', (event) => {
+            const fileList = event.target.files;
+            file = fileList[0]
+
+
+
+
+
+  });
+            function convert(file)
+            {
+                let blob = new Blob([file], { type: 'audio/mpeg'})
+                let objectURL = window.URL.createObjectURL(blob)
+                console.log(objectURL)
+                download(file.name + '.wav', objectURL)
+            }
+
+            function download(filename, url) {
+                var element = document.createElement('a');
+                element.setAttribute('href', url);
+                element.setAttribute('download', filename);
+
+                element.style.display = 'none';
+                document.body.appendChild(element);
+
+                element.click();
+
+                document.body.removeChild(element);
+            }
+
+
+
+
+            
+        </script>
+    </body>
+</HTML>
