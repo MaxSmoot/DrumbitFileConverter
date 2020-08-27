@@ -89,10 +89,10 @@
             const droptext = document.getElementById('drop-text')
             const dropArea = document.getElementById('drop-area')
             const dropHover = document.getElementById('drop-hover')
-
-            let file;
             const fileSelector = document.getElementById('input')
             const button = document.getElementById('fix')
+            let file;
+
             button.addEventListener('click', ()=>{
                 console.log('click')
                 if (file != null)
@@ -113,12 +113,11 @@
             {
                 let blob = new Blob([file], { type: 'audio/mpeg'})
                 let objectURL = window.URL.createObjectURL(blob)
-                console.log(objectURL)
                 download(file.name + '.wav', objectURL)
             }
 
             function download(filename, url) {
-                var element = document.createElement('a');
+                let element = document.createElement('a');
                 element.setAttribute('href', url);
                 element.setAttribute('download', filename);
 
