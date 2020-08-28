@@ -128,12 +128,11 @@
 
       function dragOverHandler(ev) {
         ev.preventDefault();
+        ev.dataTransfer.dropEffect = 'copy'
+        isDragging(true)
       }
-      body.addEventListener("dragenter", () => {
-        isDragging(true);
-      });
-      body.addEventListener("dragexit", () => {
-        isDragging(false);
+      body.addEventListener("dragexit", (ev) => {
+        isDragging(false)
       });
 
       function updateText()
@@ -143,7 +142,7 @@
 
       function isDragging(event) {
         if (event) {
-          body.style.backgroundColor = "whitesmoke";
+          body.style.backgroundColor = "rgba(20, 143, 210, 0.08)";
           droptext.style.visibility = "visible";
         } else {
           body.style.backgroundColor = "white";
