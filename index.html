@@ -61,7 +61,7 @@
       font-size: 5em;
       margin: auto;
       opacity: 10%;
-      visibility: hidden;
+      visibility: visible;
     }
   </style>
 
@@ -143,10 +143,8 @@
       function isDragging(event) {
         if (event) {
           body.style.backgroundColor = "rgba(20, 143, 210, 0.08)";
-          droptext.style.visibility = "visible";
         } else {
           body.style.backgroundColor = "white";
-          droptext.style.visibility = "hidden";
         }
       }
     </script>
